@@ -9,7 +9,7 @@ const Home = () => {
     <View>
       <Text>Home</Text>
       <Button
-        onPress={() => dispatch(setUser(2))}
+        onPress={() => dispatch(setUser(5))}
         title="Learn More"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
