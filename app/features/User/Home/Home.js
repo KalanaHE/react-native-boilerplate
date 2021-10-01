@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Button} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {getCountries, setUser} from './HomeSlice';
+import {getCountries} from './HomeSlice';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const Home = () => {
       <Button
         onPress={() => dispatch(getCountries())}
         title="Learn More"
-        color="#841584"
+        color="#45818e"
         accessibilityLabel="Learn more about this purple button"
       />
     </View>
