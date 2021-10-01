@@ -2,6 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 import {setLoading} from '../../Common/commonSlice';
 import {excuteAfterGivenDelay} from '../../../utils/commonUtils';
 import MyApi from '../../../api/myAPI';
+import showToast from '../../../utils/toast.utils';
 
 const REDUCER_DOMAIN = 'User';
 
@@ -49,13 +50,18 @@ export const getCountries = payload => {
       if (response && response.status === 200) {
         let data = await response.json();
         dispatch(setCountries(data));
+        showToast({
+          message: 'My message title',
+          description: 'My message description',
+          type: 'success',
+          icon: "success"
+          // backgroundColor: 'purple', // background color
+          // color: '#606060', // text color
+        });
         dispatch(setRetrievingCountriesStatus('succeeded'));
       } else {
       }
     } catch (err) {
-      console.log('====================================');
-      console.log(err);
-      console.log('====================================');
       dispatch(setRetrievingCountriesStatus('failed'));
       dispatch(setRetrievingCountriesError(JSON.stringify(err)));
     } finally {
