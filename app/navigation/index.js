@@ -7,7 +7,7 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 
 const Tab = createMaterialBottomTabNavigator();
 
-export default function App() {
+const App = () => {
   return (
     <NavigationContainer screenOptions={{headerShown: false}}>
       <Tab.Navigator
@@ -22,7 +22,7 @@ export default function App() {
           options={{
             headerShown: false,
             tabBarLabel: 'Home',
-            tabBarColor: '#3d497e',
+            tabBarColor: '#75679e',
             tabBarIcon: ({color}) => (
               <MaterialCommunityIcons name="home" color={color} size={26} />
             ),
@@ -34,7 +34,7 @@ export default function App() {
           options={{
             headerShown: false,
             tabBarLabel: 'Profile',
-            tabBarColor: '#eb6b16',
+            tabBarColor: '#a64d79',
             tabBarIcon: ({color}) => (
               <MaterialCommunityIcons name="human" color={color} size={26} />
             ),
@@ -43,4 +43,6 @@ export default function App() {
       </Tab.Navigator>
     </NavigationContainer>
   );
-}
+};
+
+export default App;
