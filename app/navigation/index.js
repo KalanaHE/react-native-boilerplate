@@ -1,48 +1,26 @@
-import * as React from 'react';
+import React, {useEffect, useRef} from 'react';
+import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import HomeStackScreen from './UserNavigator/HomeStack';
-import ProfileStackScreen from './UserNavigator/ProfileStack';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import AuthStack from './AuthStack';
+import UserStack from './UserNavigator';
+import {useSelector} from 'react-redux';
+import {setContainer} from './navigationService';
 
-const Tab = createMaterialBottomTabNavigator();
+const index = () => {
+  const isLoggedIn = useSelector(state => state.login.isLogged);
+  const navigationRef = useRef();
+  useEffect(() => {
+    setContainer(navigationRef);
+  }, []);
 
-const App = () => {
   return (
-    <NavigationContainer screenOptions={{headerShown: false}}>
-      <Tab.Navigator
-        initialRouteName="Home"
-        activeColor="#f0edf6"
-        inactiveColor="#3e2465"
-        shifting={true}
-        barStyle={{backgroundColor: '#694fad'}}>
-        <Tab.Screen
-          name="Home"
-          component={HomeStackScreen}
-          options={{
-            headerShown: false,
-            tabBarLabel: 'Home',
-            tabBarColor: '#75679e',
-            tabBarIcon: ({color}) => (
-              <MaterialCommunityIcons name="home" color={color} size={26} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={ProfileStackScreen}
-          options={{
-            headerShown: false,
-            tabBarLabel: 'Profile',
-            tabBarColor: '#a64d79',
-            tabBarIcon: ({color}) => (
-              <MaterialCommunityIcons name="human" color={color} size={26} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
+    <NavigationContainer
+      screenOptions={{headerShown: false}}
+      ref={navigationRef}>
+      <StatusBar animated={true} backgroundColor="teal" />
+      {isLoggedIn ? <UserStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };
 
-export default App;
+export default index;

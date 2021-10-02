@@ -1,54 +1,59 @@
-import React, {memo, useState} from 'react';
-import {TouchableOpacity, StyleSheet, Text, View} from 'react-native';
-import Background from './components/Background';
-import Logo from './components/Logo';
-import Header from './components/Header';
-// import Button from './components/Button';
+import React from 'react';
+import {
+  View,
+  Text,
+  KeyboardAvoidingView,
+  ScrollView,
+  StyleSheet,
+} from 'react-native';
+import {Button} from 'react-native-paper';
+import {useDispatch} from 'react-redux';
+import {setIslogged} from './loginSlice';
 
-const LoginScreen = () => {
+const Login = () => {
+  const dispatch = useDispatch();
+
   return (
-    <Background>
-      <Logo />
-
-      <Header>Welcome back.</Header>
-
-      <View style={styles.forgotPassword}>
-        <TouchableOpacity onPress={() => {}}>
-          <Text style={styles.label}>Forgot your password?</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* <Button mode="contained" onPress={() => {}}>
-        Login
-      </Button> */}
-
-      <View style={styles.row}>
-        <Text style={styles.label}>Don’t have an account? </Text>
-        <TouchableOpacity onPress={() => {}}>
-          <Text style={styles.link}>Sign up</Text>
-        </TouchableOpacity>
-      </View>
-    </Background>
+    <View style={styles.wrapper}>
+      <KeyboardAvoidingView style={styles.wrapper} behavior="padding">
+        <View style={styles.scrollViewWrapper}>
+          <ScrollView style={styles.scrollView}>
+            <Text style={styles.loginHeader}>Login</Text>
+            <Button
+              icon="camera"
+              mode="contained"
+              onPress={() => dispatch(setIslogged(true))}>
+              Login
+            </Button>
+          </ScrollView>
+        </View>
+      </KeyboardAvoidingView>
+    </View>
   );
 };
 
+export default Login;
+
 const styles = StyleSheet.create({
-  forgotPassword: {
-    width: '100%',
-    alignItems: 'flex-end',
-    marginBottom: 24,
+  wrapper: {
+    display: 'flex',
+    flex: 1,
+    backgroundColor: 'teal',
   },
-  row: {
-    flexDirection: 'row',
-    marginTop: 4,
+  scrollViewWrapper: {
+    marginTop: 70,
+    flex: 1,
   },
-  label: {
-    color: 'blue',
+  avoidView: {
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingTop: 20,
+    flex: 1,
   },
-  link: {
-    fontWeight: 'bold',
-    color: 'green',
+  loginHeader: {
+    fontSize: 28,
+    color: 'white',
+    fontWeight: '300',
+    marginBottom: 40,
   },
 });
-
-export default memo(LoginScreen);

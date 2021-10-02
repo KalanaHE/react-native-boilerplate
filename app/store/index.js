@@ -1,6 +1,4 @@
 import {configureStore, combineReducers} from '@reduxjs/toolkit';
-import userReducer from '../features/User/Home/HomeSlice';
-import commonReducer from '../features/Common/commonSlice';
 import {
   FLUSH,
   PAUSE,
@@ -15,6 +13,10 @@ import {AsyncStorage} from 'react-native';
 
 import logger from 'redux-logger';
 
+import userReducer from '../features/User/Home/HomeSlice';
+import commonReducer from '../features/Common/commonSlice';
+import loginReducer from '../features/loginSlice';
+
 // persist config obj
 // blacklist a store attribute using it's reducer name. Blacklisted attributes will not persist. (I did not find a way to blacklist specific values)
 const persistConfig = {
@@ -27,6 +29,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   common: commonReducer,
   user: userReducer,
+  login: loginReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
