@@ -8,7 +8,11 @@ import {navigateToTest1} from '../../../navigation/navigationHelpers';
 const Home = () => {
   const dispatch = useDispatch();
   return (
-    <View>
+    <View
+      style={{
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
       <Text>User Home</Text>
       <Button
         onPress={() => dispatch(getCountries())}

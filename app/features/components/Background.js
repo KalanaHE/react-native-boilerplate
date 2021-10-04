@@ -2,14 +2,14 @@ import React, {memo} from 'react';
 import {ImageBackground, StyleSheet, KeyboardAvoidingView} from 'react-native';
 
 const Background = ({children}) => (
-//   <ImageBackground
-//     source={{uri: ''}}
-//     resizeMode="repeat"
-//     style={styles.background}>
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
-      {children}
-    </KeyboardAvoidingView>
-//   </ImageBackground>
+  //   <ImageBackground
+  //     source={{uri: ''}}
+  //     resizeMode="repeat"
+  //     style={styles.background}>
+  <KeyboardAvoidingView style={styles.container} behavior="padding">
+    {children}
+  </KeyboardAvoidingView>
+  //   </ImageBackground>
 );
 
 const styles = StyleSheet.create({

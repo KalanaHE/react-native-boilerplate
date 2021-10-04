@@ -54,7 +54,7 @@ export const getCountries = payload => {
           message: 'My message title',
           description: 'My message description',
           type: 'success',
-          icon: "success"
+          icon: 'success',
           // backgroundColor: 'purple', // background color
           // color: '#606060', // text color
         });

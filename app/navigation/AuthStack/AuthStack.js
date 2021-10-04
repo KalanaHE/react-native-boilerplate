@@ -6,7 +6,9 @@ const AuthStackScreen = () => {
   const AuthStackScreen = createNativeStackNavigator();
 
   return (
-    <AuthStackScreen.Navigator screenOptions={{animation:"fade_from_bottom"}} mode="modal">
+    <AuthStackScreen.Navigator
+      screenOptions={{animation: 'fade_from_bottom'}}
+      mode="modal">
       <AuthStackScreen.Group screenOptions={{presentation: 'modal'}}>
         <AuthStackScreen.Screen
           name="Login"

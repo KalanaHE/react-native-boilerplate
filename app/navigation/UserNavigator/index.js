@@ -15,8 +15,7 @@ const App = () => {
         inactiveColor="#3e2465"
         shifting={true}
         barStyle={{backgroundColor: '#694fad'}}
-        sceneAnimationEnabled={true}
-        >
+        sceneAnimationEnabled={true}>
         <Tab.Screen
           name="Home"
           component={HomeStackScreen}

@@ -5,7 +5,7 @@ const Message = () => {
   return (
     <FlashMessage
       animated={true}
-      // hideStatusBar 
+      // hideStatusBar
       // floating={true}
       position="top"
       style={{zIndex: 1000}}
