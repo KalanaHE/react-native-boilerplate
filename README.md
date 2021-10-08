@@ -1,7 +1,7 @@
 # 🚀 React Native Feature Boilerplate - October 2021
 
-[![React Native](https://img.shields.io/badge/React%20Native-v0.62.2-green.svg)](https://facebook.github.io/react-native/)
-[![React Navigation V5](https://img.shields.io/badge/React%20Navigation-v5.1-blue.svg)](https://reactnavigation.org/)
+[![React Native](https://img.shields.io/badge/React%20Native-v0.65.1-green.svg)](https://facebook.github.io/react-native/)
+[![React Navigation V5](https://img.shields.io/badge/React%20Navigation-v4.4-blue.svg)](https://reactnavigation.org/)
 
 React NativeFeature Boilerplate is a starting point for React Native application. This project is configured with redux, redux Toolkit
 and redux persist. Uses latest version of react-navigation (v5)
