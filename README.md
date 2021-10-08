@@ -3,11 +3,11 @@
 [![React Native](https://img.shields.io/badge/React%20Native-v0.62.2-green.svg)](https://facebook.github.io/react-native/)
 [![React Navigation V5](https://img.shields.io/badge/React%20Navigation-v5.1-blue.svg)](https://reactnavigation.org/)
 
-React NativeFeature Boilerplate is a starting point for React Native application. This project is configured with redux, redux saga
+React NativeFeature Boilerplate is a starting point for React Native application. This project is configured with redux, redux Toolkit
 and redux persist. Uses latest version of react-navigation (v5)
 
 <p float="left">
-<a href='https://redux-toolkit.js.org/'><img src='https://d33wubrfki0l68.cloudfront.net/97f337956b87f4589dbf68591f22f5f3dacf2736/55f2a/img/redux_white.svg' height='60' alt='Redux Toolkit Logo' aria-label='redux-toolkit.js.org/' /></a>
+<a href='https://redux-toolkit.js.org/'><img src='https://miro.medium.com/max/800/1*4sxOPaVNwxrfZ9uxVbUaKg.jpeg' height='60' alt='Redux Toolkit Logo' aria-label='redux-toolkit.js.org/' /></a>
  
 <a href='https://formik.org/docs/guides/react-native/'><img src='https://user-images.githubusercontent.com/4060187/61057426-4e5a4600-a3c3-11e9-9114-630743e05814.png' height='60' alt='Formik Logo' aria-label='formik.org/docs/guides/react-native/' /></a>
 
