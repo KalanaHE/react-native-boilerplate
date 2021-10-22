@@ -26,7 +26,7 @@ export default function DrawerContent(props) {
         </TouchableOpacity>
         <Drawer.Section style={styles.drawerSection}>
           <DrawerItem
-            accessibilityLabel="add-child" // Can be dynamic, translated
+            accessibilityLabel="Drawer Option 1" // Can be dynamic, translated
             icon={({color, size}) => (
               <Icon
                 accessibilityLabel="plus-icon"
@@ -35,7 +35,7 @@ export default function DrawerContent(props) {
                 size={size}
               />
             )}
-            label="  Add Child"
+            label=" Drawer Option 1"
             onPress={() => {}}
           />
           <DrawerItem

@@ -13,8 +13,8 @@ const DrawerNavigator = props => {
         component={HomeStack}
         options={{headerShown: false}}
       />
-      {/* <Drawer.Screen name="Children" component={Children} />
-      <Drawer.Screen name="Notifications" component={Notification} /> */}
+      {/* <Drawer.Screen name="dddd" component={ssss} />
+      <Drawer.Screen name="ddddddd" component={fffffffff} /> */}
     </Drawer.Navigator>
   );
 };
