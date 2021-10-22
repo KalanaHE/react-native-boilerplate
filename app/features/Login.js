@@ -3,7 +3,7 @@ import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import {TextInput, Button, HelperText} from 'react-native-paper';
 import {Formik} from 'formik';
 import {useDispatch} from 'react-redux';
-import {setIslogged} from './loginSlice';
+import {login, setIslogged} from './loginSlice';
 import * as yup from 'yup';
 
 const Login = () => {
@@ -34,7 +34,7 @@ const Login = () => {
             validationSchema={loginValidationSchema}
             initialValues={{email: '', password: ''}}
             onSubmit={values => {
-              dispatch(setIslogged(true));
+              dispatch(login(true));
               console.log(values);
             }}>
             {({
