@@ -1,13 +1,11 @@
 import React, {useEffect, useRef} from 'react';
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import AuthStack from './AuthStack';
-import UserStack from './UserNavigator';
-import {useSelector} from 'react-redux';
+import NavigationRootStack from './NavigationRootStack';
 import {setContainer} from './navigationService';
 
 const index = () => {
-  const isLoggedIn = useSelector(state => state.login.isLogged);
+  const [initialState, setInitialState] = React.useState();
   const navigationRef = useRef();
   useEffect(() => {
     setContainer(navigationRef);
@@ -16,9 +14,10 @@ const index = () => {
   return (
     <NavigationContainer
       screenOptions={{headerShown: false}}
+      initialState={initialState}
       ref={navigationRef}>
       <StatusBar animated={true} backgroundColor="teal" />
-      {isLoggedIn ? <UserStack /> : <AuthStack />}
+      <NavigationRootStack />
     </NavigationContainer>
   );
 };
