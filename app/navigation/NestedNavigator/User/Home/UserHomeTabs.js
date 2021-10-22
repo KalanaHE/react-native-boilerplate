@@ -1,6 +1,6 @@
 import * as React from 'react';
-import HomeStackScreen from './HomeStack';
-import ProfileStackScreen from './ProfileStack';
+import UserHome from '../../../../features/User/Home/Home';
+import Profile from '../../../../features/User/Profile/Profile';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
@@ -10,15 +10,15 @@ const App = () => {
   return (
     <>
       <Tab.Navigator
-        initialRouteName="Home"
+        initialRouteName="HomeTab"
         activeColor="#f0edf6"
         inactiveColor="#3e2465"
         shifting={true}
         barStyle={{backgroundColor: '#694fad'}}
         sceneAnimationEnabled={true}>
         <Tab.Screen
-          name="Home"
-          component={HomeStackScreen}
+          name="HomeTab"
+          component={UserHome}
           options={{
             headerShown: false,
             tabBarLabel: 'Home',
@@ -29,8 +29,8 @@ const App = () => {
           }}
         />
         <Tab.Screen
-          name="Profile"
-          component={ProfileStackScreen}
+          name="ProfileTab"
+          component={Profile}
           options={{
             headerShown: false,
             tabBarLabel: 'Profile',
