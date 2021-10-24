@@ -4,7 +4,10 @@ import {DrawerItem, DrawerContentScrollView} from '@react-navigation/drawer';
 import {Avatar, Title, Divider, Drawer} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useDispatch} from 'react-redux';
+import {setIslogged} from '../../../../features/loginSlice';
 export default function DrawerContent(props) {
+  const dispatch = useDispatch();
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.drawerContent}>
@@ -39,7 +42,7 @@ export default function DrawerContent(props) {
               <MaterialCommunityIcons name="logout" color={color} size={size} />
             )}
             label="Log Out"
-            onPress={() => {}}
+            onPress={() => dispatch(setIslogged(false))}
           />
         </Drawer.Section>
       </View>
