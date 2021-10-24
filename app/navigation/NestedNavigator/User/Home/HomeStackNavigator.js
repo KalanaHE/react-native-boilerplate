@@ -13,28 +13,30 @@ const HomeStackNav = () => {
       <HomeStack.Screen
         name="Home11"
         component={Tab}
-        options={({route}) => ({
+        options={({navigation}) => ({
           title: '',
           headerStyle: {
             backgroundColor: 'teal',
           },
           headerLeft: () => <ProfileAvatar />,
           headerRight: () => (
-            <Feather name="help-circle" size={24} color={'white'} />
+            <Feather
+              name="help-circle"
+              size={24}
+              color={'white'}
+              style={{marginRight: 10}}
+            />
           ),
           headerTitle: () => (
             <Text
               style={{
                 textAlign: 'center',
                 display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flex: 1,
                 fontSize: 16,
                 fontWeight: 'bold',
                 color: 'white',
               }}>
-              General User
+              My APP
             </Text>
           ),
         })}

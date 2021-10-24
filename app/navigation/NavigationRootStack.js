@@ -6,7 +6,9 @@ const RootNavigation = () => {
   const RootStack = createStackNavigator();
 
   return (
-    <RootStack.Navigator screenOptions={{headerMode: 'float'}}>
+    <RootStack.Navigator 
+    screenOptions={{headerMode: 'float',presentation:'card'}}
+    >
       <RootStack.Screen
         name="Main"
         component={NavigationStack}

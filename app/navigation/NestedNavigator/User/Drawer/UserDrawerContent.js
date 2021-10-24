@@ -12,14 +12,9 @@ export default function DrawerContent(props) {
           accessibilityLabel="profile" // Can be dynamic, translated
           onPress={() => {}}>
           <View style={styles.userInfoSection}>
-            <Avatar.Text size={50} label="XD" />
-            <Title style={styles.title}>
+            <Avatar.Text size={50} label="KH" />
+            <Title style={[styles.title, {marginLeft: 20, marginTop: 10}]}>
               Hello World
-              <MaterialCommunityIcons
-                name="pencil"
-                color={'#757575'}
-                size={17}
-              />
             </Title>
             <Divider style={styles.title} />
           </View>
@@ -57,6 +52,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   userInfoSection: {
+    marginTop: 10,
+    flexDirection: 'row',
     paddingLeft: 20,
   },
   title: {
