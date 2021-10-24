@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, Button} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setIslogged} from '../../loginSlice';
 import {getCountries} from './HomeSlice';
 import {navigateToTest1} from '../../../navigation/navigationHelpers';
 
 const Home = () => {
   const dispatch = useDispatch();
+
   return (
     <View
       style={{

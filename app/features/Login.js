@@ -1,13 +1,24 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import {TextInput, Button, HelperText} from 'react-native-paper';
 import {Formik} from 'formik';
-import {useDispatch} from 'react-redux';
-import {login, setIslogged} from './loginSlice';
+import {useDispatch, useSelector} from 'react-redux';
+import {login} from './loginSlice';
 import * as yup from 'yup';
+import {
+  selectIsLoggedIn,
+  selectIsLoggedInUser,
+  selectLoggingStatus,
+} from './selector';
+import {navigateToUserHome} from '../navigation/navigationHelpers';
+import {useIsFocused} from '@react-navigation/native';
 
 const Login = () => {
+  const isFocused = useIsFocused();
   const dispatch = useDispatch();
+  const loggingStatus = useSelector(selectLoggingStatus);
+  const isLogged = useSelector(selectIsLoggedIn);
+  const loggedInUser = useSelector(selectIsLoggedInUser);
 
   const loginValidationSchema = yup.object().shape({
     email: yup
@@ -79,6 +90,15 @@ const Login = () => {
               </>
             )}
           </Formik>
+          <Button
+            onPress={() => {
+              navigateToUserHome();
+            }}
+            title="LOGIN TEST"
+            raised
+            mode="contained">
+            home
+          </Button>
         </ScrollView>
       </View>
     </View>
