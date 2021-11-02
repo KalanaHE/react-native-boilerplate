@@ -1,58 +1,65 @@
-import {getUserAgent} from 'react-native-device-info';
+import {getUserAgent as UserAgent} from 'react-native-device-info';
 import AsyncStorage from '@react-native-community/async-storage';
-let authToken = null;
-let idToken = null;
-let refreshToken = null;
+
 let loggedInCountry = null;
 
-export const setToken = token => (authToken = token);
-export const getToken = () => authToken;
-export const setIdToken = token => (idToken = token);
-export const getIdToken = () => idToken;
-export const userAgent = async () => await getUserAgent();
-
-export const setCountry = country => {
-  loggedInCountry = country;
-};
-
-export const getCountry = () => {
-  return loggedInCountry;
-};
+export const getUserAgent = async () => await UserAgent();
+export const setCountry = country => (loggedInCountry = country);
+export const getCountry = () => loggedInCountry;
 
 export const setRefreshToken = async value => {
   try {
-    await AsyncStorage.setItem('testToken', value);
+    await AsyncStorage.setItem('refreshToken', value);
   } catch (error) {
-    console.log('store', error);
+    console.log('store error: ', error);
   }
 };
 
-export const getRefreshToken = async value => {
+export const getRefreshToken = async () => {
   try {
-    const value = await AsyncStorage.getItem('testToken');
+    const value = await AsyncStorage.getItem('refreshToken');
     if (value !== null) {
       return value;
     }
   } catch (error) {
-    console.log('store', error);
+    console.log('store error: ', error);
   }
 };
 
-export const setBearerToken = async value => {
+export const setAccessToken = async value => {
   try {
-    await AsyncStorage.setItem('token', value);
+    await AsyncStorage.setItem('accessToken', value);
   } catch (error) {
-    console.log('store', error);
+    console.log('store error: ', error);
   }
 };
 
-export const getBearerToken = async value => {
+export const getAccessToken = async () => {
   try {
-    const value = await AsyncStorage.getItem('token');
+    const value = await AsyncStorage.getItem('accessToken');
     if (value !== null) {
       return value;
     }
   } catch (error) {
-    console.log('store', error);
+    console.log('store error: ', error);
+  }
+};
+
+export const setIdToken = async value => {
+  try {
+    await AsyncStorage.setItem('idToken', value);
+  } catch (error) {
+    console.log('store error: ', error);
+  }
+};
+
+export const getIdToken = async () => {
+  try {
+    const value = await AsyncStorage.getItem('idToken');
+    if (value !== null) {
+      return value;
+    }
+  } catch (error) {
+    console.log('store error: ', error);
   }
 };

@@ -12,9 +12,9 @@ export default function App() {
   const {authToken} = useSelector(state => state.login);
   const isLogged = useSelector(selectIsLoggedIn);
 
-  useEffect(() => {
-    setToken(authToken);
-  }, [authToken]);
+  // useEffect(() => {
+  //   setToken(authToken);
+  // }, [authToken]);
 
   return (
     <Stack.Navigator

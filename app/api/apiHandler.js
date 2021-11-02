@@ -1,9 +1,15 @@
 import fetch from 'isomorphic-fetch';
-import {userAgent, getRefreshToken, getBearerToken} from '../utils/store.utils';
+import {
+  getAccessToken,
+  getRefreshToken,
+  getUserAgent,
+} from '../utils/store.utils';
 
 const getHeaders = async (stringify = true) => {
-  // const refreshToken = await getRefreshToken();
-  // const token = await getBearerToken();
+  const refreshToken = await getRefreshToken();
+  const accessToken = await getAccessToken();
+  const userAgent = await getUserAgent();
+
   const basicHeaders = {
     'Access-Control-Allow-Headers': '*',
     Accept: 'application/json',
@@ -11,8 +17,10 @@ const getHeaders = async (stringify = true) => {
     mode: 'cors',
     redirect: 'follow',
     referrer: 'no-referrer',
-    // Authorization: `Bearer ${token}`,
-    // refreshToken: refreshToken,
+    'Content-Type': 'application/json',
+    'x-user-agent': userAgent,
+    Authorization: `Bearer ${accessToken}`,
+    refreshToken: refreshToken,
   };
   if (stringify) {
     basicHeaders['Content-Type'] = 'application/json';
@@ -23,45 +31,49 @@ const getHeaders = async (stringify = true) => {
 const constructApiURL = (apiBaseURL, path) => `${apiBaseURL}${path}`;
 
 export const createAPIClient = apiBaseURL => ({
-  doGet: path => {
+  doGet: async path => {
     return fetch(constructApiURL(apiBaseURL, path), {
       method: 'GET',
-      headers: getHeaders(),
+      headers: await getHeaders(stringify),
       credentials: 'include',
       timeout: 1000,
     });
   },
-  doPost: (path, data, stringify = true) => {
+
+  doPost: async (path, data, stringify = true) => {
     return fetch(constructApiURL(apiBaseURL, path), {
       method: 'POST',
-      headers: getHeaders(stringify),
+      headers: await getHeaders(stringify),
       credentials: 'include',
       timeout: 1000,
+      redirect: 'follow',
       body: stringify ? JSON.stringify(data) : data,
     });
   },
-  doPut: (path, data) => {
+
+  doPut: async (path, data) => {
     return fetch(constructApiURL(apiBaseURL, path), {
       method: 'PUT',
-      headers: getHeaders(),
+      headers: await getHeaders(),
       credentials: 'include',
       timeout: 1000,
       body: JSON.stringify(data),
     });
   },
-  doPatch: (path, data, stringify = true) => {
+
+  doPatch: async (path, data, stringify = true) => {
     return fetch(constructApiURL(apiBaseURL, path), {
       method: 'PATCH',
-      headers: getHeaders(stringify),
+      headers: await getHeaders(stringify),
       credentials: 'include',
       timeout: 1000,
       body: JSON.stringify(data),
     });
   },
-  doDelete: (path, data) => {
+  doDelete: async (path, data) => {
     return fetch(constructApiURL(apiBaseURL, path), {
       method: 'DELETE',
-      headers: getHeaders(),
+      headers: await getHeaders(),
       credentials: 'include',
       timeout: 1000,
       'Content-Type': 'application/json',
