@@ -5,7 +5,7 @@ import {Avatar, Title, Divider, Drawer} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useDispatch} from 'react-redux';
-import {setIslogged} from '../../../../features/loginSlice';
+import {logOut, setIslogged} from '../../../../features/loginSlice';
 export default function DrawerContent(props) {
   const dispatch = useDispatch();
   return (
@@ -42,7 +42,7 @@ export default function DrawerContent(props) {
               <MaterialCommunityIcons name="logout" color={color} size={size} />
             )}
             label="Log Out"
-            onPress={() => dispatch(setIslogged(false))}
+            onPress={() => dispatch(logOut(false))}
           />
         </Drawer.Section>
       </View>
