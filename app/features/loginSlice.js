@@ -108,10 +108,8 @@ export const logOut = () => {
       if (response && response.status === 200) {
         setAccessToken(null);
         setRefreshToken(null);
-
         dispatch(setLoggedInUser(null));
         dispatch(setIslogged(false));
-
         dispatch(setLoggingOutStatus('succeeded'));
       } else {
         showToast({
@@ -119,8 +117,6 @@ export const logOut = () => {
           description: 'Something Went Wrong!',
           type: 'danger',
           icon: 'danger',
-          // backgroundColor: 'teal', // background color
-          // color: '#606060', // text color
         });
       }
     } catch (err) {

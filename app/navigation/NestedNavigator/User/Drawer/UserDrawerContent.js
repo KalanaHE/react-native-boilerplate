@@ -4,10 +4,17 @@ import {DrawerItem, DrawerContentScrollView} from '@react-navigation/drawer';
 import {Avatar, Title, Divider, Drawer} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {logOut, setIslogged} from '../../../../features/loginSlice';
 export default function DrawerContent(props) {
   const dispatch = useDispatch();
+  const firstName = useSelector(
+    state => state.login?.loggedInUser?.firstName || '',
+  );
+  const lastName = useSelector(
+    state => state.login?.loggedInUser?.lastName || '',
+  );
+
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.drawerContent}>
@@ -15,9 +22,12 @@ export default function DrawerContent(props) {
           accessibilityLabel="profile" // Can be dynamic, translated
           onPress={() => {}}>
           <View style={styles.userInfoSection}>
-            <Avatar.Text size={50} label="KH" />
-            <Title style={[styles.title, {marginLeft: 20, marginTop: 10}]}>
-              Hello World
+            <Avatar.Text
+              size={40}
+              label={`${firstName?.charAt(0)}${lastName?.charAt(0)}`}
+            />
+            <Title style={[styles.title, {marginLeft: 20, marginTop: 6}]}>
+              {`${firstName} ${lastName}`}
             </Title>
             <Divider style={styles.title} />
           </View>
@@ -62,6 +72,7 @@ const styles = StyleSheet.create({
   title: {
     marginTop: 20,
     fontWeight: 'bold',
+    fontSize: 18,
   },
   caption: {
     fontSize: 14,
