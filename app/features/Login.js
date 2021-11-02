@@ -21,13 +21,10 @@ const Login = () => {
   const loggedInUser = useSelector(selectIsLoggedInUser);
 
   const loginValidationSchema = yup.object().shape({
-    email: yup
-      .string()
-      .email('Please enter valid email')
-      .required('Email Address is Required'),
+    username: yup.string().required('username is Required'),
     password: yup
       .string()
-      .min(8, ({min}) => `Password must be at least ${min} characters`)
+      .min(2, ({min}) => `Password must be at least ${min} characters`)
       .required('Password is required'),
   });
 
@@ -43,10 +40,9 @@ const Login = () => {
           <Text style={styles.loginHeader}>LOGIN</Text>
           <Formik
             validationSchema={loginValidationSchema}
-            initialValues={{email: '', password: ''}}
+            initialValues={{username: '', password: ''}}
             onSubmit={values => {
-              dispatch(login(true));
-              console.log(values);
+              dispatch(login(values));
             }}>
             {({
               handleChange,
@@ -58,15 +54,14 @@ const Login = () => {
             }) => (
               <>
                 <TextInput
-                  name="email"
-                  placeholder="Email Address"
-                  onChangeText={handleChange('email')}
-                  onBlur={handleBlur('email')}
-                  value={values.email}
-                  keyboardType="email-address"
+                  name="username"
+                  placeholder="Username"
+                  onChangeText={handleChange('username')}
+                  onBlur={handleBlur('username')}
+                  value={values.username}
                 />
-                <HelperText type="error" visible={errors.email}>
-                  {errors.email}
+                <HelperText type="error" visible={errors.username}>
+                  {errors.username}
                 </HelperText>
                 <TextInput
                   name="password"
