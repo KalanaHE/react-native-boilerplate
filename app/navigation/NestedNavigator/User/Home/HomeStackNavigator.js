@@ -4,10 +4,12 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Tab from './UserHomeTabs';
 import ProfileAvatar from '../../../../CommonComponents/Header/ProfileAvatar';
 import Feather from 'react-native-vector-icons/Feather';
+import {useTheme} from 'react-native-paper';
 
 const HomeStack = createStackNavigator();
 
 const HomeStackNav = () => {
+  const {colors} = useTheme();
   return (
     <HomeStack.Navigator screenOptions={{headerMode: 'screen'}}>
       <HomeStack.Screen
@@ -16,14 +18,14 @@ const HomeStackNav = () => {
         options={({navigation}) => ({
           title: '',
           headerStyle: {
-            backgroundColor: 'teal',
+            backgroundColor: colors.secondary,
           },
           headerLeft: () => <ProfileAvatar />,
           headerRight: () => (
             <Feather
               name="help-circle"
               size={24}
-              color={'white'}
+              color={colors.white}
               style={{marginRight: 10}}
             />
           ),
@@ -34,7 +36,7 @@ const HomeStackNav = () => {
                 display: 'flex',
                 fontSize: 16,
                 fontWeight: 'bold',
-                color: 'white',
+                color: colors.white,
               }}>
               My APP
             </Text>
