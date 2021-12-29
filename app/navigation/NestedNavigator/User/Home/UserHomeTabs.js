@@ -3,18 +3,20 @@ import UserHome from '../../../../features/User/Home/Home';
 import Profile from '../../../../features/User/Profile/Profile';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {useTheme} from 'react-native-paper';
 
 const Tab = createMaterialBottomTabNavigator();
 
 const App = () => {
+  const {colors} = useTheme();
   return (
     <>
       <Tab.Navigator
         initialRouteName="HomeTab"
-        activeColor="#f0edf6"
-        inactiveColor="#3e2465"
+        activeColor={colors.accent}
+        inactiveColor={colors.white}
         shifting={true}
-        barStyle={{backgroundColor: '#694fad'}}
+        barStyle={{backgroundColor: colors.secondary}}
         sceneAnimationEnabled={true}>
         <Tab.Screen
           name="HomeTab"
@@ -22,7 +24,7 @@ const App = () => {
           options={{
             headerShown: false,
             tabBarLabel: 'Home',
-            tabBarColor: '#75679e',
+            tabBarColor: colors.secondary,
             tabBarIcon: ({color}) => (
               <MaterialCommunityIcons name="home" color={color} size={26} />
             ),
@@ -34,7 +36,7 @@ const App = () => {
           options={{
             headerShown: false,
             tabBarLabel: 'Profile',
-            tabBarColor: '#a64d79',
+            tabBarColor: colors.onSurface,
             tabBarIcon: ({color}) => (
               <MaterialCommunityIcons name="human" color={color} size={26} />
             ),
