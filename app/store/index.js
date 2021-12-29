@@ -16,6 +16,7 @@ import logger from 'redux-logger';
 import userReducer from '../features/User/Home/HomeSlice';
 import commonReducer from '../features/Common/commonSlice';
 import loginReducer from '../features/loginSlice';
+import HomeReducer from '../features/User/Home/HomeSlice';
 
 // persist config obj
 // blacklist a store attribute using it's reducer name. Blacklisted attributes will not persist. (I did not find a way to blacklist specific values)
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   common: commonReducer,
   user: userReducer,
   login: loginReducer,
+  home: HomeReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

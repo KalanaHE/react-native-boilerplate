@@ -120,6 +120,12 @@ export const logOut = () => {
         });
       }
     } catch (err) {
+      setAccessToken(null);
+      setRefreshToken(null);
+      dispatch(setLoggedInUser(null));
+      dispatch(setIslogged(false));
+      dispatch(setLoggingOutStatus('succeeded'));
+
       dispatch(setLoggingOutStatus('failed'));
       dispatch(setLoggingOutError(JSON.stringify(err)));
     } finally {
