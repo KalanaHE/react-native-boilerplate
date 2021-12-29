@@ -34,7 +34,7 @@ export const createAPIClient = apiBaseURL => ({
   doGet: async path => {
     return fetch(constructApiURL(apiBaseURL, path), {
       method: 'GET',
-      headers: await getHeaders(stringify),
+      headers: await getHeaders(),
       credentials: 'include',
       timeout: 1000,
     });
@@ -76,9 +76,6 @@ export const createAPIClient = apiBaseURL => ({
       headers: await getHeaders(),
       credentials: 'include',
       timeout: 1000,
-      'Content-Type': 'application/json',
-      query: JSON.stringify(data),
-      params: JSON.stringify(data),
       body: JSON.stringify(data),
     });
   },
