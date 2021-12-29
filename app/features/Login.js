@@ -1,16 +1,20 @@
-import React, {useEffect} from 'react';
-import {View, Text, ScrollView, StyleSheet} from 'react-native';
-import {TextInput, Button, HelperText} from 'react-native-paper';
+import React from 'react';
+import {ScrollView, StyleSheet} from 'react-native';
 import {Formik} from 'formik';
+import Background from '../CommonComponents/LoginBackground';
+import Logo from '../CommonComponents/Logo';
+import Button from '../CommonComponents/Button';
+import Header from '../CommonComponents/LoginHeader';
+import {theme} from '../core/theme';
+import TextInput from '../CommonComponents/TextInput';
 import {useDispatch, useSelector} from 'react-redux';
 import {login} from './loginSlice';
-import * as yup from 'yup';
+import loginValidationSchema from '../validation/loginSchema';
 import {
   selectIsLoggedIn,
   selectIsLoggedInUser,
   selectLoggingStatus,
 } from './selector';
-import {navigateToUserHome} from '../navigation/navigationHelpers';
 import {useIsFocused} from '@react-navigation/native';
 
 const Login = () => {
@@ -20,103 +24,95 @@ const Login = () => {
   const isLogged = useSelector(selectIsLoggedIn);
   const loggedInUser = useSelector(selectIsLoggedInUser);
 
-  const loginValidationSchema = yup.object().shape({
-    username: yup.string().required('username is Required'),
-    password: yup
-      .string()
-      .min(2, ({min}) => `Password must be at least ${min} characters`)
-      .required('Password is required'),
-  });
-
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-      <View style={styles.scrollViewWrapper}>
-        <ScrollView style={styles.scrollView}>
-          <Text style={styles.loginHeader}>LOGIN</Text>
-          <Formik
-            validationSchema={loginValidationSchema}
-            initialValues={{username: '', password: ''}}
-            onSubmit={values => {
-              dispatch(login(values));
-            }}>
-            {({
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              values,
-              errors,
-              isValid,
-            }) => (
-              <>
-                <TextInput
-                  name="username"
-                  placeholder="Username"
-                  onChangeText={handleChange('username')}
-                  onBlur={handleBlur('username')}
-                  value={values.username}
-                />
-                <HelperText type="error" visible={errors.username}>
-                  {errors.username}
-                </HelperText>
-                <TextInput
-                  name="password"
-                  placeholder="Password"
-                  onChangeText={handleChange('password')}
-                  onBlur={handleBlur('password')}
-                  value={values.password}
-                  secureTextEntry
-                />
-                <HelperText type="error" visible={errors.password}>
-                  {errors.password}
-                </HelperText>
-                <Button
-                  onPress={handleSubmit}
-                  disabled={!isValid}
-                  title="LOGIN TEST"
-                  raised
-                  mode="contained">
-                  Login
-                </Button>
-              </>
-            )}
-          </Formik>
-          <Button
-            onPress={() => {
-              navigateToUserHome();
-            }}
-            title="LOGIN TEST"
-            raised
-            mode="contained">
-            home
-          </Button>
-        </ScrollView>
-      </View>
-    </View>
+    <ScrollView keyboardShouldPersistTaps="always">
+      <Background>
+        <Logo />
+        <Header>Hello World</Header>
+        <Formik
+          validationSchema={loginValidationSchema}
+          initialValues={{username: '', password: ''}}
+          onSubmit={values => {
+            dispatch(login(values));
+          }}>
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            isValid,
+          }) => (
+            <>
+              <TextInput
+                label="Username"
+                name="Username"
+                placeholder="Enter your username"
+                returnKeyType="next"
+                value={values.username}
+                onChangeText={handleChange('username')}
+                onBlur={handleBlur('username')}
+                error={!!errors.username}
+                errorText={errors.username}
+                autoCapitalize="none"
+                autoCompleteType="username"
+              />
+
+              <TextInput
+                label="Password"
+                name="Password"
+                placeholder="Enter your password"
+                returnKeyType="next"
+                value={values.password}
+                onChangeText={handleChange('password')}
+                onBlur={handleBlur('password')}
+                error={!!errors.password}
+                errorText={errors.password}
+                autoCapitalize="none"
+                autoCompleteType="password"
+                secureTextEntry
+              />
+
+              <Button
+                onPress={handleSubmit}
+                disabled={!isValid || loggingStatus === 'loading'}
+                loading={loggingStatus === 'loading'}
+                title="LOGIN TEST"
+                // raised
+                mode="contained">
+                {loggingStatus === 'loading' ? 'Logging In..' : 'Login'}
+              </Button>
+            </>
+          )}
+        </Formik>
+        {/* <View style={styles.row}>
+          <Text style={styles.label}>Don’t have an account? </Text>
+          <TouchableOpacity onPress={() => {}}>
+            <Text style={styles.link}>Sign up</Text>
+          </TouchableOpacity>
+        </View> */}
+      </Background>
+    </ScrollView>
   );
 };
 
 export default Login;
 
 const styles = StyleSheet.create({
-  scrollViewWrapper: {
-    marginTop: 70,
-    flex: 1,
+  forgotPassword: {
+    width: '100%',
+    alignItems: 'flex-end',
+    marginBottom: 24,
   },
-  avoidView: {
-    paddingLeft: 30,
-    paddingRight: 30,
-    paddingTop: 20,
-    flex: 1,
+  row: {
+    flexDirection: 'row',
+    marginTop: 4,
   },
-  loginHeader: {
-    fontSize: 28,
-    alignSelf: 'center',
-    fontWeight: '300',
-    marginBottom: 40,
+  label: {
+    color: theme.colors.secondary,
+  },
+  link: {
+    fontWeight: 'bold',
+    color: theme.colors.primary,
   },
 });
