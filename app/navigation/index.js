@@ -3,10 +3,10 @@ import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import NavigationRootStack from './NavigationRootStack';
 import {setContainer} from './navigationService';
-import { useTheme } from 'react-native-paper';
+import {useTheme} from 'react-native-paper';
 
-const index = () => {
-  const { colors } = useTheme();
+const Navigation = () => {
+  const {colors} = useTheme();
   const [initialState, setInitialState] = React.useState();
   const navigationRef = useRef();
   useEffect(() => {
@@ -24,4 +24,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Navigation;
