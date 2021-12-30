@@ -6,6 +6,8 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useDispatch, useSelector} from 'react-redux';
 import {logOut, setIslogged} from '../../../../features/loginSlice';
+import {navigateToProfile} from '../../../navigationHelpers';
+
 export default function DrawerContent(props) {
   const dispatch = useDispatch();
   const firstName = useSelector(
@@ -20,7 +22,7 @@ export default function DrawerContent(props) {
       <View style={styles.drawerContent}>
         <TouchableOpacity
           accessibilityLabel="profile" // Can be dynamic, translated
-          onPress={() => {}}>
+          onPress={() => navigateToProfile()}>
           <View style={styles.userInfoSection}>
             <Avatar.Text
               size={40}
