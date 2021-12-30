@@ -1,6 +1,6 @@
 import * as React from 'react';
 import UserHome from '../../../../features/User/Home/Home';
-import Profile from '../../../../features/User/Profile/Profile';
+import TestScreen1 from '../../../../features/User/TestScreens/Screen1';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {useTheme} from 'react-native-paper';
@@ -32,11 +32,11 @@ const App = () => {
         />
         <Tab.Screen
           name="ProfileTab"
-          component={Profile}
+          component={TestScreen1}
           options={{
             headerShown: false,
-            tabBarLabel: 'Profile',
-            tabBarColor: colors.onSurface,
+            tabBarLabel: 'TestScreen1',
+            tabBarColor: colors.disabled,
             tabBarIcon: ({color}) => (
               <MaterialCommunityIcons name="human" color={color} size={26} />
             ),
