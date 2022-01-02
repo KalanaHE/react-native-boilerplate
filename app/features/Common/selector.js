@@ -1,1 +1,2 @@
-export const selectSessionVerifyingStatus = state => state.common.sessionVerifyingStatus;
+export const selectSessionVerifyingStatus = state =>
+  state.common.sessionVerifyingStatus;
