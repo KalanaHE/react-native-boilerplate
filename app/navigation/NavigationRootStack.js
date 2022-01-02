@@ -17,7 +17,7 @@ const RootNavigation = () => {
     if (isLogged) {
       dispatch(verifyUserSession());
     }
-  }, [dispatch]);
+  }, [dispatch, isLogged]);
 
   return (
     <RootStack.Navigator
